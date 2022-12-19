@@ -137,6 +137,14 @@ form.example::after {
   <div class="nav-header">
     <div class="nav-title">
       <a href="index.php" target="_blank" style="text-decoration:none; color:white;">OOAA</a>
+      <?php
+      if(isset($_SESSION['Username'])){
+        echo '<img src="./layout/img/"'.$_SESSION['photo'].' alt="" width="30" height="30">';
+      }else{
+       echo '<img src="./layout/img/pp.jpg" alt="" width="30" height="30"> ';
+      }
+      ?>
+      
     </div>
   </div>
   <div class="nav-links">
