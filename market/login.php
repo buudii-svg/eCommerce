@@ -11,14 +11,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $pass = $_POST['pass'];
     $hashedPass = sha1($pass);
 
-    $stmt= $con->prepare("SELECT UserName, Password FROM users WHERE UserName = ? AND Password = ? AND GroupID = 0");
+    $stmt= $con->prepare("SELECT UserName, Password, GroupID FROM users WHERE UserName = ? AND Password = ? ");
     $stmt->execute(array($user, $hashedPass));
+    $row= $stmt->fetch();
     $count = $stmt->rowcount();
+    $groupID = $row['GroupID'];
   
-    if($count > 0){
-       $_SESSION['Username'] = $user;
+    if($count > 0 && $groupID == 0){
+        $_SESSION['Username'] = $user;
         header('Location: dashboard.php');
+        echo $groupID;
         exit();
+    }else{
+      header('Location: userMarket.php');
     }
 }
 

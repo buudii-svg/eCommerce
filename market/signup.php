@@ -13,22 +13,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email= $_POST['email'];
     $location = $_POST['loc'];
     $phone = $_POST['phone'];
-    $address = $_POST['address'];
     $photo = $_POST['photo'];
+    // $_SESSION['photo'] -> image = $photo;
+    $address = $_POST['address'];
     $market = $_POST['market'];
     if($market == 'market'){
         $groupID = 1;
     }else{
         $groupID = 0;
     }
-
-    //add image to database
-    $image = $_FILES['photo']['name'];
-    $image_tmp = $_FILES['photo']['tmp_name'];
-    move_uploaded_file($image_tmp, "layout/images/$image");
-    
-
-
 
     $stmt= $con->prepare("SELECT UserName FROM users WHERE UserName = ?");
     $stmt->execute(array($user));
@@ -39,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else{
         $stmt= $con->prepare("INSERT INTO users (UserName, Password, Email, Address, Location, Phone, Photo, GroupID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute(array($user, $hashedPass, $email, $address, $location,$phone, $photo, $groupID ));
-        header('Location: index.php');
+        header('Location: login.php');
         exit();
     }
 }
@@ -50,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   <h1><b>Welcome.</b> Please signup.</h1>
 
-  <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+  <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" >
 
     <fieldset>
       <p><input type="text" required name="email" placeholder="Email" ></p>
@@ -59,9 +52,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       <p><input type="text" required name="address" placeholder="Address" ></p>
       <p><input type="text"  name="loc" placeholder="Location" ></p>
       <p><input type="text" required name="phone" placeholder="Phone" ></p>
-      <p><input type="file" required name="photo"  ></p>
+      <p><input type="file" required name="photo" ></p>
       <p><input type="checkbox" name="market" value="market">Market User</p>
-      <p><a href="index.php">Login?</a></p>
+      <p><a href="login.php">Login?</a></p>
       <p><input type="submit" name="submit" value="Signup"></p>
     </fieldset>
   </form>

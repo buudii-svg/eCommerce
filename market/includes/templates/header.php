@@ -132,24 +132,36 @@ form.example::after {
 
 </head>   
 <body> 
+  <?php
+  include 'connect.php';
+  @
+  session_start();
+  $stmt = $con->prepare("SELECT GroupID FROM users WHERE Username = ?");
+  @
+  $stmt->execute(array($_SESSION['Username']));
+  $row = $stmt->fetch();
+  $count = $stmt->rowCount();
+  @
+  $groupId = $row['GroupID'];
+  ?>
 
 <div class="nav">
   <div class="nav-header">
     <div class="nav-title">
       <a href="index.php" target="_blank" style="text-decoration:none; color:white;">OOAA</a>
-      <?php
-      if(isset($_SESSION['Username'])){
-        echo '<img src="./layout/img/"'.$_SESSION['photo'].' alt="" width="30" height="30">';
-      }else{
-       echo '<img src="./layout/img/pp.jpg" alt="" width="30" height="30"> ';
-      }
-      ?>
-      
+      <img src="./layout/img/pp.jpg" alt="#" width="30" height="30">
     </div>
   </div>
   <div class="nav-links">
     <input type="text" name="search" placeholder="Search..">
     <button type="submit" ><i class="fa fa-search"></i></button>
+    <?php
+    if(isset($_SESSION['Username']) && $groupId == 1){
+      echo '<a href="marketUser.php" target="_blank">Profile</a>';
+    }else{
+      echo '<a href="dashboard.php" target="_blank">Profile</a>';
+    }
+    ?>
     <a href="" target="_blank">Products</a>
     <a href="" target="_blank">Brands</a>
     <a href="" target="_blank">Markets</a>

@@ -1,49 +1,39 @@
-<?php 
-include "connect.php";
+<?php
 include "includes/templates/header.php";
+include "connect.php";
+ 
 
- if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
-if(isset($_SESSION['Username'])){
-   echo 'Welcome '.$_SESSION['Username'];
-}
+// if($_SERVER['REQUEST_METHOD'] == 'POST'){
+//     $user1 = $_POST['user'];
+//     $pass1 = $_POST['pass'];
+//     $hashedPass1 = sha1($pass);
+//     $email1= $_POST['email'];
+//     $location1 = $_POST['loc'];
+//     $phone1 = $_POST['phone'];
+//     $address1 = $_POST['address'];
+//     $stmt= $con->prepare("UPDATE users SET UserName = ?, Password = ?, Email = ?, Address = ?, Location = ?, Phone = ? WHERE UserName = ?");
+//     $stmt->execute(array($user1, $hashedPass1, $email1, $address1, $location1, $phone1, $_SESSION['Username'] ));
+//     header('Location: dashboard.php');
+//     exit();
+// }
 
+// $stmtt= $con->prepare("SELECT Email, Password, UserName, Address, Location, Phone, Photo FROM users WHERE UserName = ?");
+// $stmtt->execute(array($_SESSION['Username']));
+// $row = $stmtt->fetch();
+// $count = $stmtt->rowcount();  
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $user1 = $_POST['user'];
-    $pass1 = $_POST['pass'];
-    $hashedPass1 = sha1($pass);
-    $email1= $_POST['email'];
-    $location1 = $_POST['loc'];
-    $phone1 = $_POST['phone'];
-    $address1 = $_POST['address'];
-    $stmt= $con->prepare("UPDATE users SET UserName = ?, Password = ?, Email = ?, Address = ?, Location = ?, Phone = ? WHERE UserName = ?");
-    $stmt->execute(array($user1, $hashedPass1, $email1, $address1, $location1, $phone1, $_SESSION['Username'] ));
-    header('Location: dashboard.php');
-    exit();
-}
+// $email = $row['Email'];
 
-$stmtt= $con->prepare("SELECT Email, Password, UserName, Address, Location, Phone, Photo FROM users WHERE UserName = ?");
-$stmtt->execute(array($_SESSION['Username']));
-$row = $stmtt->fetch();
-$count = $stmtt->rowcount();  
+// $pass = $row['Password'];
 
-@
-$email = $row['Email'];
-@
-$pass = $row['Password'];
-@
-$user = $row['UserName'];
-@
-$address = $row['Address'];
-@
-$loc = $row['Location'];
-@
-$phone = $row['Phone'];
-@
-$photo = $row['Photo'];
+// $user = $row['UserName'];
+
+// $address = $row['Address'];
+
+// $loc = $row['Location'];
+
+// $phone = $row['Phone'];
+// $photo = $row['Photo'];
 
 
 ?>
@@ -60,6 +50,20 @@ $photo = $row['Photo'];
     height: 50px;
     text-transform: uppercase;
     width: 282px;
+}
+.btn{
+    text-decoration: none;
+    appearance: none;
+    background-color: #008dde;
+    border: none;
+    border-radius: 3px;
+    color: #f4f4f4;
+    cursor: pointer;
+    font-family: inherit;
+    height: 50px;
+    text-transform: uppercase;
+    width: 282px;
+
 }
 </style>
 <script>
@@ -78,8 +82,7 @@ document.getElementById("phone").disabled = false;
 <div class="container">
        <div class="profile_Side_Bar">
          <img src="./layout/img/<?php echo $photo?> " alt="Picture" width="140px" height="140px">
-   </div>
-      <br>
+         </div>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <fieldset>
       <p><input type="text" required name="email" disabled placeholder="Email" id="email" value=" <?php echo $email?>" ></p>
@@ -91,19 +94,8 @@ document.getElementById("phone").disabled = false;
       <p><input type = "button" onclick = "enable()" value = "Edit The Above"></p>
       <p><input type="submit" name="submit" value="Submit"></p>
     </fieldset>
-  </form>
-        <a href="">Favourite Products</a><br>
-        <a href="">Favourite Markets</a><br>
-        <a href="">Purshased products</a><br>
-        <a href="">Cart</a><br>
-        <a href="">In progress products</a><br>
-        
-    </div>
-
-
-
-
-
-
-
-
+    </form>
+    <a href="addProduct.php" class="btn">Add Product</a>
+    <br>
+    <a href="viewProducts.php" class="btn">View Products</a>
+</div>
