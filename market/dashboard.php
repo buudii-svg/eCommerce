@@ -92,11 +92,35 @@ document.getElementById("phone").disabled = false;
       <p><input type="submit" name="submit" value="Submit"></p>
     </fieldset>
   </form>
-        <a href="">Favourite Products</a><br>
-        <a href="">Favourite Markets</a><br>
-        <a href="">Purshased products</a><br>
-        <a href="">Cart</a><br>
-        <a href="">In progress products</a><br>
+
+  <?php
+  //make if condition to check if GroupId == 0 represent a div and if GroupId == 1 represent aother div
+  //and make a loop to get all the data from the database
+
+  $stmt= $con->prepare("SELECT GroupId FROM users WHERE UserName = ?");
+  $stmt->execute(array($_SESSION['Username']));
+  $row = $stmt->fetch();
+  $count = $stmt->rowcount();
+  $GroupId = $row['GroupId'];
+
+        if($GroupId == 0){ 
+        echo' <a href="">Favourite Products</a><br>';
+        echo  '<a href="">Favourite Markets</a><br>';
+        echo '<a href="">Purshased products</a><br>';
+        echo '<a href="">Cart</a><br>';
+        echo  '<a href="">In progress products</a><br>';
+         } else {
+        echo '<a href="addProduct.php">Add Product</a><br>';
+        echo '<a href="viewProduct.php">view Product</a><br>';
+         }
+
+  
+   
+
+
+
+?>
+       
         
     </div>
 

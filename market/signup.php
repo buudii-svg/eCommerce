@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['Username'])){
-    header('Location: dashboard.php');
+    header('Location: index.php');
 }
 include "includes/templates/header.php"; 
 include "connect.php";
@@ -16,6 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $photo = $_POST['photo'];
     // $_SESSION['photo'] -> image = $photo;
     $address = $_POST['address'];
+    @
     $market = $_POST['market'];
     if($market == 'market'){
         $groupID = 1;
@@ -23,18 +24,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $groupID = 0;
     }
 
-    $stmt= $con->prepare("SELECT UserName FROM users WHERE UserName = ?");
-    $stmt->execute(array($user));
+
+    $stmt= $con->prepare("SELECT UserName, Email FROM users WHERE UserName = ? OR Email = ?");
+    $stmt->execute(array($user, $email));
     $count = $stmt->rowcount();
-  
+
     if($count > 0){
-        echo 'This username is already exist';
+        echo 'This username or email is already exist';
     }else{
         $stmt= $con->prepare("INSERT INTO users (UserName, Password, Email, Address, Location, Phone, Photo, GroupID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute(array($user, $hashedPass, $email, $address, $location,$phone, $photo, $groupID ));
         header('Location: login.php');
         exit();
     }
+
 }
  
 ?>

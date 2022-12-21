@@ -17,13 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $count = $stmt->rowcount();
     $groupID = $row['GroupID'];
   
-    if($count > 0 && $groupID == 0){
+    if($count > 0 ){
         $_SESSION['Username'] = $user;
-        header('Location: dashboard.php');
-        echo $groupID;
+        header('Location: index.php');
         exit();
     }else{
-      header('Location: userMarket.php');
+        echo "Wrong Username or Password";
     }
 }
 

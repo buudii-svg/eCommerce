@@ -132,19 +132,6 @@ form.example::after {
 
 </head>   
 <body> 
-  <?php
-  include 'connect.php';
-  @
-  session_start();
-  $stmt = $con->prepare("SELECT GroupID FROM users WHERE Username = ?");
-  @
-  $stmt->execute(array($_SESSION['Username']));
-  $row = $stmt->fetch();
-  $count = $stmt->rowCount();
-  @
-  $groupId = $row['GroupID'];
-  ?>
-
 <div class="nav">
   <div class="nav-header">
     <div class="nav-title">
@@ -155,13 +142,7 @@ form.example::after {
   <div class="nav-links">
     <input type="text" name="search" placeholder="Search..">
     <button type="submit" ><i class="fa fa-search"></i></button>
-    <?php
-    if(isset($_SESSION['Username']) && $groupId == 1){
-      echo '<a href="marketUser.php" target="_blank">Profile</a>';
-    }else{
-      echo '<a href="dashboard.php" target="_blank">Profile</a>';
-    }
-    ?>
+    <a href="dashboard.php" target="_blank">Profile</a>
     <a href="" target="_blank">Products</a>
     <a href="" target="_blank">Brands</a>
     <a href="" target="_blank">Markets</a>
