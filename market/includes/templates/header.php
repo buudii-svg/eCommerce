@@ -135,18 +135,18 @@ form.example::after {
 <div class="nav">
   <div class="nav-header">
     <div class="nav-title">
-      <a href="index.php" target="_blank" style="text-decoration:none; color:white;">OOAA</a>
+      <a href="index.php" target="" style="text-decoration:none; color:white;">OOAA</a>
       <img src="./layout/img/pp.jpg" alt="#" width="30" height="30">
     </div>
   </div>
   <div class="nav-links">
     <input type="text" name="search" placeholder="Search..">
     <button type="submit" ><i class="fa fa-search"></i></button>
-    <a href="dashboard.php" target="_blank">Profile</a>
-    <a href="" target="_blank">Products</a>
-    <a href="" target="_blank">Brands</a>
-    <a href="" target="_blank">Markets</a>
-    <a href="login.php" target="_blank">Login</a>
+    <a href="dashboard.php" target="">Profile</a>
+    <a href="" target="">Products</a>
+    <a href="" target="">Brands</a>
+    <a href="" target="">Markets</a>
+    <a href="login.php" target="">Login</a>
   </div>
 </div>
 

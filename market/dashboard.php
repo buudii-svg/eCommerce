@@ -110,8 +110,8 @@ document.getElementById("phone").disabled = false;
         echo '<a href="">Cart</a><br>';
         echo  '<a href="">In progress products</a><br>';
          } else {
-        echo '<a href="addProduct.php">Add Product</a><br>';
-        echo '<a href="viewProduct.php">view Product</a><br>';
+        echo '<a href="addProduct.php" target="_blank">Add Product</a><br>';
+        echo '<a href="viewProduct.php"  target="_blank">view Product</a><br>';
          }
 
   

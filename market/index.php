@@ -34,7 +34,7 @@ include "connect.php";
 
 }
 </style>   
-                <Html>
+             
 
 
 
