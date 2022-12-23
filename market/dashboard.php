@@ -94,9 +94,6 @@ document.getElementById("phone").disabled = false;
   </form>
 
   <?php
-  //make if condition to check if GroupId == 0 represent a div and if GroupId == 1 represent aother div
-  //and make a loop to get all the data from the database
-
   $stmt= $con->prepare("SELECT GroupId FROM users WHERE UserName = ?");
   $stmt->execute(array($_SESSION['Username']));
   $row = $stmt->fetch();
@@ -104,23 +101,16 @@ document.getElementById("phone").disabled = false;
   $GroupId = $row['GroupId'];
 
         if($GroupId == 0){ 
-        echo' <a href="">Favourite Products</a><br>';
-        echo  '<a href="">Favourite Markets</a><br>';
-        echo '<a href="">Purshased products</a><br>';
-        echo '<a href="">Cart</a><br>';
-        echo  '<a href="">In progress products</a><br>';
+        echo' <a href="" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Favourite Products</a><br>';
+        echo  '<a href="" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Favourite Markets</a><br>';
+        echo '<a href="" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Purshased products</a><br>';
+        echo '<a href="" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Cart</a><br>';
+        echo  '<a href="" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">In progress products</a><br>';
          } else {
-        echo '<a href="addProduct.php" target="_blank">Add Product</a><br>';
-        echo '<a href="viewProduct.php"  target="_blank">view Product</a><br>';
+        echo '<a href="addProduct.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Add Product</a><br>';
+        echo '<a href="viewProduct.php"  target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">view Product</a><br>';
          }
-
-  
-   
-
-
-
-?>
-       
+?>      
         
     </div>
 
