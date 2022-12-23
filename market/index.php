@@ -36,7 +36,24 @@ if(!isset($_SESSION))
   max-width: 30ch;
 
 }
-</style>   
+</style> 
+
+<?php
+//if it is searched hide the content of index page
+if(isset($_GET['search'])){
+  echo '<style>
+  .productsList{
+    display:none;
+  }
+  </style>';
+}else{
+  echo '<style>
+  .productsLists{
+    display:none;
+  }
+  </style>';
+}
+?>
 <div class="productsList">
              <?php
               $stmt = $con->prepare("SELECT * FROM products");

@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $stmt->execute(array($user, $hashedPass));
     $row= $stmt->fetch();
     $count = $stmt->rowcount();
+    @
     $groupID = $row['GroupID'];
   
     if($count > 0 ){

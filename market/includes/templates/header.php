@@ -128,7 +128,7 @@ form.example::after {
 }
 }
     </style>
-    <title>admin</title>
+    <title>OOAA</title>
 
 </head>   
 <body> 
@@ -156,14 +156,79 @@ form.example::after {
     </div>
   </div>
   <div class="nav-links">
-    <input type="text" name="search" placeholder="Search..">
-    <button type="submit" ><i class="fa fa-search"></i></button>
     <a href="dashboard.php" target="">Profile</a>
-    <a href="" target="">Products</a>
-    <a href="" target="">Brands</a>
-    <a href="" target="">Markets</a>
     <a href="login.php" target="">Login</a>
   </div>
+  
+  <div class="nav-links" style="display: inline-block; padding: 13px 10px 13px 10px;">
+     <form class="formula" action="" method="GET" name="">
+      <select name="options" id="options">
+        <option value="products">Products</option>
+        <option value="brands">Brands</option>
+        <option value="markets">Markets</option>
+      </select>
+       <input type="text" name="search" placeholder="Search..">
+       <button type="submit" style="cursor:pointer;" ><i class="fa fa-search"></i></button>
+     </form>
+  </div> 
 </div>
 
 
+  <div class="productsLists" style="width:100%;">
+  <?php
+  //make a search function that serach by products or brand or market upon the selected value of the user
+  if(isset($_GET['search'])){
+    $search = $_GET['search'];
+    @
+    $option = $_GET['options'];
+    if($option == 'products'){ 
+      $stmt = $con->prepare("SELECT * FROM products WHERE Name LIKE '%$search%'");
+      $stmt->execute();
+      $rows = $stmt->fetchAll(); 
+      foreach($rows as $row){
+        echo '<div class="product">';
+                echo '<img src="./layout/img/'.$row['Image'].'" alt="product"> <br>';
+                echo '<h2>'.$row['Name'].'</h2>';
+                echo '<span>'.$row['Brand'].'</span>';
+                echo '<span>Price: '.$row['Price'].'</span>';
+                echo '<span>Quantity: '.$row['Quantity'].'</span>';
+                echo '<span>Description: '.$row['Fdesc'].'</span>';
+                echo '</div>';
+      }
+    }
+    else if($option == 'brands'){
+      //search by brand name 
+      $stmt = $con->prepare("SELECT * FROM products WHERE Brand LIKE '%$search%'");
+      $stmt->execute();
+      $rows = $stmt->fetchAll();
+      foreach($rows as $row){
+        echo '<div class="product">';
+                echo '<img src="./layout/img/'.$row['Image'].'" alt="product"> <br>';
+                echo '<h2>'.$row['Name'].'</h2>';
+                echo '<span>'.$row['Brand'].'</span>';
+                echo '<span>Price: '.$row['Price'].'</span>';
+                echo '<span>Quantity: '.$row['Quantity'].'</span>';
+                echo '<span>Description: '.$row['Fdesc'].'</span>';
+                echo '</div>';
+      }
+    }
+    else if($option == 'markets'){
+      //search by market name 
+      $stmt = $con->prepare("SELECT * FROM products WHERE MarketUser LIKE '%$search%'");
+      $stmt->execute();
+      $rows = $stmt->fetchAll();
+      foreach($rows as $row){
+        echo '<div class="product">';
+                echo '<img src="./layout/img/'.$row['Image'].'" alt="product"> <br>';
+                echo '<h2>'.$row['Name'].'</h2>';
+                echo '<span>'.$row['Brand'].'</span>';
+                echo '<span>Price: '.$row['Price'].'</span>';
+                echo '<span>Quantity: '.$row['Quantity'].'</span>';
+                echo '<span>Description: '.$row['Fdesc'].'</span>';
+                echo '</div>';
+      }
+    }
+  }
+
+  ?>
+  </div>
