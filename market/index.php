@@ -1,7 +1,10 @@
 <?php
 include "includes/templates/header.php";
 include "connect.php";
-
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 ?>
 
 <style>
@@ -34,12 +37,28 @@ include "connect.php";
 
 }
 </style>   
-             
+<div class="productsList">
+             <?php
+              $stmt = $con->prepare("SELECT * FROM products");
+              $stmt->execute();
+              $rows = $stmt->fetchAll();
+              foreach($rows as $row){ 
+                echo '<div class="product">';
+                echo '<img src="./layout/img/'.$row['Image'].'" alt="product"> <br>';
+                echo '<h2>'.$row['Name'].'</h2>';
+                echo '<span>'.$row['Brand'].'</span>';
+                echo '<span>Price: '.$row['Price'].'</span>';
+                echo '<span>Quantity: '.$row['Quantity'].'</span>';
+                echo '<span>Description: '.$row['Fdesc'].'</span>';
+                echo '</div>';
+              
+              }
+              ?>
 
-
+  </div>
 
     
-                <div class="productsList">
+                <!-- <div class="productsList">
                     <div class="product">
                         <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e6da41fa-1be4-4ce5-b89c-22be4f1f02d4/air-force-1-07-mens-shoes-5QFp5Z.png" alt="product1"> <br>
                         <h2>Nike Air-Force</h2>
@@ -101,4 +120,4 @@ include "connect.php";
                 
                 
                 
-                </div>
+                </div> -->

@@ -136,7 +136,23 @@ form.example::after {
   <div class="nav-header">
     <div class="nav-title">
       <a href="index.php" target="" style="text-decoration:none; color:white;">OOAA</a>
-      <img src="./layout/img/pp.jpg" alt="#" width="30" height="30">
+      <?php
+      if(!isset($_SESSION)) 
+       { 
+          session_start(); 
+       }
+      include "connect.php";
+      if(isset($_SESSION['Username'])){
+        $stmt = $con->prepare("SELECT Photo FROM users WHERE UserName = ?");
+        $stmt->execute(array($_SESSION['Username']));
+        $row = $stmt->fetch();
+        echo '<img src="./layout/img/'.$row['Photo'].'" alt="#" width="30" height="30">';
+      }
+      else {
+        echo '<img src="./layout/img/pp.jpg" alt="#" width="30" height="30">';
+      }
+      ?>
+      <!-- <img src="./layout/img/pp.jpg" alt="#" width="30" height="30"> -->
     </div>
   </div>
   <div class="nav-links">
