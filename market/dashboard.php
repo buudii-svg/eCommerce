@@ -104,11 +104,11 @@ if(isset($_SESSION['Username'])){
   $GroupId = $row['GroupId'];
 
         if($GroupId == 0){ 
-        echo' <a href="fav.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Favourite Products</a><br>';
+        echo  '<a href="fav.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Favourite Products</a><br>';
         echo  '<a href="markets.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Liked Markets</a><br>';
-        echo '<a href="" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Purshased Products</a><br>';
-        echo '<a href="cart.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Cart</a><br>';
-        echo  '<a href="" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">In Progress Products</a><br>';
+        echo  '<a href="inProccess.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">In Progress Products</a><br>';
+        echo  '<a href="purchased.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Purshased Products</a><br>';
+        echo  '<a href="cart.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Cart</a><br>';
          } else {
         echo '<a href="addProduct.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Add Product</a><br>';
         echo '<a href="viewProduct.php"  target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">view Product</a><br>';
