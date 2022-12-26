@@ -6,10 +6,6 @@ include "includes/templates/header.php";
     { 
         session_start(); 
     } 
-if(isset($_SESSION['Username'])){
-   echo 'Welcome '.$_SESSION['Username'];
-}
-
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $user1 = $_POST['user'];
@@ -75,7 +71,14 @@ document.getElementById("phone").disabled = false;
 }
 
 </script>
-<div class="container">
+<div class="left" style="margin-top:7%;">
+<?php
+if(isset($_SESSION['Username'])){
+   echo 'Welcome '.$_SESSION['Username'];
+}
+?>
+</div>
+<div class="container" style="margin-top:2%;">
        <div class="profile_Side_Bar">
          <img src="./layout/img/<?php echo $photo?> " alt="Picture" width="140px" height="140px">
    </div>
