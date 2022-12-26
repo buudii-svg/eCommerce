@@ -68,15 +68,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   if(isset($_POST['cart'])){
   $stmt = $con->prepare("INSERT INTO cart (UserName, ProductID) VALUES (?, ?)");
   $stmt->execute(array($_SESSION['Username'], $_POST['ProductID']));
-  echo 'Added to cart successfully';
+  echo '<script>alert("Added to cart successfully")</script>';
   }else if(isset($_POST['like'])){
   $stmt = $con->prepare("INSERT INTO fav (UserName, ProductID) VALUES (?, ?)");
   $stmt->execute(array($_SESSION['Username'], $_POST['ProductID']));
-  echo 'Added to fav successfully';
+ echo '<script>alert("Added to favourites successfully")</script>';
   }else if(isset($_POST['market'])){
   $stmt = $con->prepare("INSERT INTO market (UserName, MarketUser) VALUES (?, ?)");
   $stmt->execute(array($_SESSION['Username'], $_POST['MarketUser']));
-  echo 'Added to market successfully';
+  echo '<script>alert("Added to liked markets successfully")</script>';
   }
 }
 
