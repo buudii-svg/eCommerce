@@ -152,7 +152,6 @@ form.example::after {
         echo '<img src="./layout/img/pp.jpg" alt="#" width="30" height="30">';
       }
       ?>
-      <!-- <img src="./layout/img/pp.jpg" alt="#" width="30" height="30"> -->
     </div>
   </div>
   <div class="nav-links">
@@ -176,7 +175,6 @@ form.example::after {
 
   <div class="productsLists" style="width:100%;">
   <?php
-  //make a search function that serach by products or brand or market upon the selected value of the user
   if(isset($_GET['search'])){
     $search = $_GET['search'];
     @
@@ -197,7 +195,6 @@ form.example::after {
       }
     }
     else if($option == 'brands'){
-      //search by brand name 
       $stmt = $con->prepare("SELECT * FROM products WHERE Brand LIKE '%$search%'");
       $stmt->execute();
       $rows = $stmt->fetchAll();
@@ -213,7 +210,6 @@ form.example::after {
       }
     }
     else if($option == 'markets'){
-      //search by market name 
       $stmt = $con->prepare("SELECT * FROM products WHERE MarketUser LIKE '%$search%'");
       $stmt->execute();
       $rows = $stmt->fetchAll();

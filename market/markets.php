@@ -39,7 +39,7 @@ if(!isset($_SESSION))
 
  <div class="productsList">
              <?php
-              $sql = "SELECT * FROM products WHERE ProductID IN (SELECT ProductID FROM cart WHERE Username = '".$_SESSION['Username']."')";
+              $sql = "SELECT * FROM products WHERE MarketUser IN (SELECT MarketUser FROM market WHERE Username = '".$_SESSION['Username']."')";
               $result = $con->query($sql);
               $rows = $result->fetchAll();
               foreach($rows as $row){ 

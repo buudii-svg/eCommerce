@@ -36,6 +36,18 @@ if(!isset($_SESSION))
   max-width: 30ch;
 
 }
+  input[type="submit"] {
+    appearance: none;
+    background-color: #008dde;
+    border: none;
+    border-radius: 3px;
+    color: #f4f4f4;
+    cursor: pointer;
+    font-family: inherit;
+    height: 20px;
+    text-transform: uppercase;
+}
+
 </style> 
 
 <?php
@@ -52,6 +64,22 @@ if(isset($_GET['search'])){
   }
   </style>';
 }
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  if(isset($_POST['cart'])){
+  $stmt = $con->prepare("INSERT INTO cart (UserName, ProductID) VALUES (?, ?)");
+  $stmt->execute(array($_SESSION['Username'], $_POST['ProductID']));
+  echo 'Added to cart successfully';
+  }else if(isset($_POST['like'])){
+  $stmt = $con->prepare("INSERT INTO fav (UserName, ProductID) VALUES (?, ?)");
+  $stmt->execute(array($_SESSION['Username'], $_POST['ProductID']));
+  echo 'Added to fav successfully';
+  }else if(isset($_POST['market'])){
+  $stmt = $con->prepare("INSERT INTO market (UserName, MarketUser) VALUES (?, ?)");
+  $stmt->execute(array($_SESSION['Username'], $_POST['MarketUser']));
+  echo 'Added to market successfully';
+  }
+}
+
 ?>
 <div class="productsList">
              <?php
@@ -66,8 +94,14 @@ if(isset($_GET['search'])){
                 echo '<span>Price: '.$row['Price'].'</span>';
                 echo '<span>Quantity: '.$row['Quantity'].'</span>';
                 echo '<span>Description: '.$row['Fdesc'].'</span>';
+                echo '<form action="'.$_SERVER['PHP_SELF'].'" method="POST">';
+                echo '<input type="hidden" name="ProductID" value="'.$row['ProductID'].'">';
+                echo '<input type="hidden" name="MarketUser" value="'.$row['MarketUser'].'">';
+                echo '<p><input type="submit" name="cart" value="Add To Cart"></p>';
+                echo '<p><input type="submit" name="like" value="Liked Product"></p>';
+                echo '<p><input type="submit" name="market" value="Liked Market"></p>';
+                echo '</form>';
                 echo '</div>';
               }
               ?>
-              
-  </div>
+</div>
