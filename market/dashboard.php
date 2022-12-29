@@ -57,6 +57,30 @@ $photo = $row['Photo'];
     text-transform: uppercase;
     width: 282px;
 }
+.a{
+  display: inline-block;
+  width: 282px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  color: #f4f4f4;
+  background-color: #008dde;
+  border-radius: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin:10px;
+}
+.left{
+  margin-left:0;
+  text-align:center; 
+  width:50%;
+}
+.right{
+  margin-top: 12%;
+  text-align:left; 
+  width:50%;
+}
 </style>
 <script>
 
@@ -71,19 +95,20 @@ document.getElementById("phone").disabled = false;
 }
 
 </script>
-<div class="left" style="margin-top:7%;">
+<div style="margin-top:5%;">
 <?php
 if(isset($_SESSION['Username'])){
    echo 'Welcome '.$_SESSION['Username'];
 }
 ?>
 </div>
-<div class="container" style="margin-top:2%;">
-       <div class="profile_Side_Bar">
-         <img src="./layout/img/<?php echo $photo?> " alt="Picture" width="140px" height="140px">
+<div class="container" style=" width:100%; display:flex;">
+<div class="left">
+    <div class="profile_Side_Bar">
+      <img src="./layout/img/<?php echo $photo?> " alt="Picture" width="140px" height="140px">
    </div>
-      <br>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+   <br>
+   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <fieldset>
       <p><input type="text" required name="email" disabled placeholder="Email" id="email" value=" <?php echo $email?>" ></p>
       <p><input type="password" required name="pass" disabled placeholder="Password" id="pass" value="<?php echo $pass?>" ></p>
@@ -94,8 +119,9 @@ if(isset($_SESSION['Username'])){
       <p><input type = "button" onclick = "enable()" value = "Edit The Above"></p>
       <p><input type="submit" name="submit" value="Submit"></p>
     </fieldset>
-  </form>
-
+   </form>
+</div>
+<div class="right">
   <?php
   $stmt= $con->prepare("SELECT GroupId FROM users WHERE UserName = ?");
   $stmt->execute(array($_SESSION['Username']));
@@ -104,18 +130,19 @@ if(isset($_SESSION['Username'])){
   $GroupId = $row['GroupId'];
 
         if($GroupId == 0){ 
-        echo  '<a href="fav.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Favourite Products</a><br>';
-        echo  '<a href="markets.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Liked Markets</a><br>';
-        echo  '<a href="inProccess.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">In Progress Products</a><br>';
-        echo  '<a href="purchased.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Purshased Products</a><br>';
-        echo  '<a href="cart.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Cart</a><br>';
+        echo  '<a href="fav.php" target="_blank" class="a">Favourite Products</a><br>';
+        echo  '<a href="markets.php" target="_blank" class="a">Liked Markets</a><br>';
+        echo  '<a href="inProccess.php" target="_blank" class="a">In Progress Products</a><br>';
+        echo  '<a href="purchased.php" target="_blank" class="a">Purshased Products</a><br>';
+        echo  '<a href="cart.php" target="_blank" class="a">Cart</a><br>';
          } else {
-        echo '<a href="addProduct.php" target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">Add Product</a><br>';
-        echo '<a href="viewProduct.php"  target="_blank" style="background-color: #008dde; border: none; border-radius: 3px; color: #f4f4f4; text-transform: uppercase; text-decoration:none;">view Product</a><br>';
+        echo '<a href="addProduct.php" target="_blank" class="a">Add Product</a><br>';
+        echo '<a href="viewProduct.php"  target="_blank" class="a">view Product</a><br>';
          }
-?>      
+?>  
+</div>    
         
-    </div>
+</div>
 
 
 
