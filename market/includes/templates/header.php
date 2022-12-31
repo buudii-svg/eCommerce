@@ -154,9 +154,15 @@ form.example::after {
       ?>
     </div>
   </div>
+  <?php
+  if(isset($_GET['logout'])){
+    session_unset();
+    session_destroy();
+    header('Location: index.php');
+  }
+  ?>
   <div class="nav-links">
-    <a href="dashboard.php" target="">Profile</a>
-    <a href="login.php" target="">Login</a>
+    <a href="login.php" target="">Login</a>  
   </div>
   
   <div class="nav-links" style="display: inline-block; padding: 13px 10px 13px 10px;">
@@ -168,6 +174,12 @@ form.example::after {
       </select>
        <input type="text" name="search" placeholder="Search..">
        <button type="submit" style="cursor:pointer;" ><i class="fa fa-search"></i></button>
+       <?php
+        if(isset($_SESSION['Username'])){
+          echo '<a href="index.php?logout=true" target="" style="text-decoration:none; color:white; padding:5px;">Logout</a>';
+          echo '<a href="dashboard.php" target="" style="text-decoration:none; color:white; padding:5px;">Profile</a>';
+        }
+       ?>
      </form>
   </div> 
 </div>

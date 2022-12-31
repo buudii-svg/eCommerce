@@ -110,7 +110,7 @@ if(isset($_SESSION['Username'])){
    <br>
    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
     <fieldset>
-      <p><input type="text" required name="email" disabled placeholder="Email" id="email" value=" <?php echo $email?>" ></p>
+      <p><input type="text" required name="email" disabled placeholder="Email" id="email" value="<?php echo $email?>" ></p>
       <p><input type="password" required name="pass" disabled placeholder="Password" id="pass" value="<?php echo $pass?>" ></p>
       <p><input type="text" required name="user" disabled placeholder="Username" id="user" value="<?php echo $user?>" ></p>
       <p><input type="text" required name="address" disabled placeholder="Address" id="address" value="<?php echo $address?>" ></p>
@@ -136,8 +136,8 @@ if(isset($_SESSION['Username'])){
         echo  '<a href="purchased.php" target="_blank" class="a">Purshased Products</a><br>';
         echo  '<a href="cart.php" target="_blank" class="a">Cart</a><br>';
          } else {
-        echo '<a href="addProduct.php" target="_blank" class="a">Add Product</a><br>';
-        echo '<a href="viewProduct.php"  target="_blank" class="a">view Product</a><br>';
+        echo '<a href="addProduct.php" target="_blank" class="a">Add Products</a><br>';
+        echo '<a href="viewProduct.php"  target="_blank" class="a">view Products</a><br>';
          }
 ?>  
 </div>    

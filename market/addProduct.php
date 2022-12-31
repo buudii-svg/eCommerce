@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $stmt->execute(array($name, $brand, $price, $bdesc, $fdesc, $photo, $quantity, $marketUser));
     $count = $stmt->rowcount();
     if($count > 0){
-        echo 'Product Added';
+         echo '<script>alert("Product is added successfully")</script>';
     }
 }
 
