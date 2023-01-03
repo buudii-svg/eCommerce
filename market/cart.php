@@ -64,10 +64,6 @@ if(isset($_POST['purchase'])){
 }
       
 ?>
-<?php
-
-?>
-
  <div class="productsList">
              <?php
               $sql = "SELECT * FROM products WHERE ProductID IN (SELECT ProductID FROM cart WHERE Username = '".$_SESSION['Username']."')";
